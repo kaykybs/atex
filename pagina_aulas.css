@@ -1,0 +1,148 @@
+/* Definição de Paleta de Cores e Tipografia */
+:root {
+    --fundo-geral: #f4f6f8;
+    --cor-verde-ativo: #5cb85c;
+    --texto-escuro: #212529;
+    --texto-branco: #ffffff;
+    --borda-bloco: #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--fundo-geral);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container Principal em Layout de Duas Colunas */
+.container-principal {
+    width: 100%;
+    max-width: 1050px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* --- COLUNA ESQUERDA: APENAS A TAG VIDEO --- */
+.secao-video {
+    flex: 1.3;
+}
+
+.secao-video video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: block;
+    object-fit: contain;
+}
+
+/* --- COLUNA DIREITA: CONTEÚDO E LISTA --- */
+.secao-lateral {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.titulo-unidade {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--texto-escuro);
+    margin-bottom: 5px;
+}
+
+.lista-atividades {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.item-atividade {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto-escuro);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icone-concluido {
+    color: #24a148;
+    font-size: 18px;
+}
+
+.item-atividade.ativo {
+    background-color: var(--cor-verde-ativo);
+    color: var(--texto-branco);
+    font-weight: 600;
+}
+
+/* Bloco de Notas */
+.bloco-notas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.titulo-bloco {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto-escuro);
+}
+
+.area-texto-bloco {
+    position: relative;
+    width: 100%;
+}
+
+.area-texto-bloco textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid var(--borda-bloco);
+    background-color: var(--texto-branco);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    resize: none;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.icone-editar {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: var(--texto-escuro);
+    font-size: 14px;
+}
+
+/* Botão de Navegação Inferior */
+.botao-voltar {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.botao-voltar:hover {
+    opacity: 0.7;
+}
