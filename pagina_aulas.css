@@ -1,4 +1,3 @@
-/* Definição de Paleta de Cores e Tipografia */
 :root {
     --fundo-geral: #f4f6f8;
     --cor-verde-ativo: #5cb85c;
@@ -23,7 +22,6 @@ body {
     padding: 20px;
 }
 
-/* Container Principal em Layout de Duas Colunas */
 .container-principal {
     width: 100%;
     max-width: 1050px;
@@ -32,7 +30,6 @@ body {
     align-items: flex-start;
 }
 
-/* --- COLUNA ESQUERDA: APENAS A TAG VIDEO --- */
 .secao-video {
     flex: 1.3;
 }
@@ -47,7 +44,6 @@ body {
     object-fit: contain;
 }
 
-/* --- COLUNA DIREITA: CONTEÚDO E LISTA --- */
 .secao-lateral {
     flex: 1;
     display: flex;
@@ -85,13 +81,13 @@ body {
     font-size: 18px;
 }
 
-.item-atividade.ativo {
+.item-atividade:hover {
     background-color: var(--cor-verde-ativo);
     color: var(--texto-branco);
     font-weight: 600;
+    cursor: pointer;
 }
 
-/* Bloco de Notas */
 .bloco-notas-container {
     display: flex;
     flex-direction: column;
@@ -131,7 +127,6 @@ body {
     font-size: 14px;
 }
 
-/* Botão de Navegação Inferior */
 .botao-voltar {
     align-self: flex-end;
     background: none;

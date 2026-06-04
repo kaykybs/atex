@@ -21,7 +21,6 @@
             min-height: 100vh;
         }
 
-        /* Background Pattern (Simulando as formas geométricas fracas ao fundo) */
         .padrao-fundo {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -31,7 +30,6 @@
             z-index: -1;
         }
 
-        /* Cabeçalho / Navbar */
         header {
             background-color: #FFFFFF;
             display: flex;
@@ -80,7 +78,6 @@
             margin-left: 15px;
         }
 
-        /* Seção Principal */
         .secao-principal {
             display: flex;
             justify-content: space-between;
@@ -89,7 +86,6 @@
             padding: 0 8%;
         }
 
-        /* Lados com Ilustrações */
         .lateral-principal {
             flex: 1;
             display: flex;
@@ -128,7 +124,6 @@
             color: var(--escuro-principal);
         }
 
-        /* Centro (Textos e Botão) */
         .centro-principal {
             flex: 1.5;
             text-align: center;
@@ -175,7 +170,6 @@
             background-color: #12a678;
         }
 
-        /* Rodapé Fictício */
         .nota-rodape {
             position: absolute;
             bottom: 20px;
@@ -191,7 +185,6 @@
             cursor: pointer;
         }
 
-        /* Responsividade para celulares */
         @media (max-width: 900px) {
             .secao-principal {
                 flex-direction: column;
