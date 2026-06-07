@@ -13,8 +13,8 @@
     <div class="container-principal">
         
         <div class="secao-video">
-            <video controls>
-            <source src="./gestao-financeira.mp4" type="video/mp4">
+            <video id="video-player" controls>
+                <source src="./gestao-financeira.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -22,29 +22,70 @@
             <h2 class="titulo-unidade">UNIDADE 1: Diagnóstico Financeiro</h2>
             
             <ul class="lista-atividades">
-                <li class="item-atividade">
-                    <span class="texto-atividade">Video: Como ter gestão financeira?</span>
+                <li class="item-atividade ativa" data-video="./gestao-financeira.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 1: Como ter gestão financeira?</span>
+                </li>
+                
+                <li class="item-atividade" data-video="./aula2.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 2: Análise de Fluxo de Caixa</span>
+                </li>
+
+                <li class="item-atividade" data-video="./aula3.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 3: Planejamento e Metas</span>
+                </li>
+
+                <li class="item-atividade" data-video="./aula4.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 4: Indicadores de Sucesso</span>
                 </li>
                 
                 <a href="./Apostila_Educacao_Financeira_Premium.pdf" download="Apostila_Educacao_Financeira.pdf" style="text-decoration: none;">
-                    <li class="item-atividade">
-                        <span class="texto-atividade">Apostila: módulo 1</span>
+                    <li class="item-atividade item-download">
+                        <span class="texto-atividade"><i class="fa-solid fa-file-pdf"></i> Apostila: Módulo 1</span>
                     </li>
                 </a>   
             </ul>
 
             <div class="bloco-notas-container">
-                <label class="titulo-bloco">Bloco de Notas</label>
+                <label class="titulo-bloco">Bloco de Notas (Salva automaticamente)</label>
                 <div class="area-texto-bloco">
-                    <textarea placeholder="Digite suas anotações aqui..."></textarea>
+                    <textarea id="bloco-notas" placeholder="Digite suas anotações aqui..."></textarea>
                     <i class="fa-solid fa-pen icone-editar"></i>
                 </div>
             </div>
 
-            <button class="botao-voltar">Voltar</button>
+            <button class="botao-voltar"><a href="./pagina_modulos.html" class="link-voltar">Voltar</a></button>
         </div>
 
     </div>
 
+    <script>
+        const blocoNotas = document.getElementById('bloco-notas');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const textoSalvo = localStorage.getItem('anotacoes_curso');
+            if (textoSalvo) {
+                blocoNotas.value = textoSalvo;
+            }
+        });
+
+        blocoNotas.addEventListener('input', () => {
+            localStorage.setItem('anotacoes_curso', blocoNotas.value);
+        });
+
+        const itensVideo = document.querySelectorAll('.item-atividade[data-video]');
+        const videoPlayer = document.getElementById('video-player');
+
+        itensVideo.forEach(item => {
+            item.addEventListener('click', () => {
+                itensVideo.forEach(i => i.classList.remove('ativa'));
+                
+                item.classList.add('ativa');
+                
+                const novoVideo = item.getAttribute('data-video');
+                videoPlayer.src = novoVideo;
+                videoPlayer.play();
+            });
+        });
+    </script>
 </body>
 </html>

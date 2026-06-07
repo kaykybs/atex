@@ -1,6 +1,7 @@
 :root {
     --fundo-geral: #f4f6f8;
     --cor-verde-ativo: #5cb85c;
+    --cor-azul-destaque: #2b6cb0;
     --texto-escuro: #212529;
     --texto-branco: #ffffff;
     --borda-bloco: #e2e8f0;
@@ -32,6 +33,7 @@ body {
 
 .secao-video {
     flex: 1.3;
+    width: 100%;
 }
 
 .secao-video video {
@@ -46,6 +48,7 @@ body {
 
 .secao-lateral {
     flex: 1;
+    width: 100%; 
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -66,6 +69,7 @@ body {
 }
 
 .item-atividade {
+    background-color: var(--texto-branco);
     padding: 12px 16px;
     border-radius: 8px;
     font-size: 14px;
@@ -74,18 +78,34 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid var(--borda-bloco);
+    transition: all 0.2s ease;
 }
 
-.icone-concluido {
-    color: #24a148;
-    font-size: 18px;
+.icone-play, .fa-file-pdf {
+    margin-right: 8px;
 }
 
 .item-atividade:hover {
+    background-color: #edf2f7;
+    cursor: pointer;
+}
+
+.item-atividade.ativa {
     background-color: var(--cor-verde-ativo);
     color: var(--texto-branco);
     font-weight: 600;
-    cursor: pointer;
+    border-color: var(--cor-verde-ativo);
+}
+
+
+.item-download {
+    background-color: #fffaf0;
+    border-color: #feebc8;
+    color: #dd6b20;
+}
+.item-download:hover {
+    background-color: #feebc8;
 }
 
 .bloco-notas-container {
@@ -108,7 +128,7 @@ body {
 
 .area-texto-bloco textarea {
     width: 100%;
-    height: 100px;
+    height: 120px;
     border: 1px solid var(--borda-bloco);
     background-color: var(--texto-branco);
     border-radius: 8px;
@@ -123,7 +143,7 @@ body {
     position: absolute;
     bottom: 15px;
     right: 15px;
-    color: var(--texto-escuro);
+    color: #a0aec0;
     font-size: 14px;
 }
 
@@ -138,6 +158,44 @@ body {
     margin-top: 15px;
 }
 
+.link-voltar{
+    text-decoration: none;
+    color: #000;
+}
+
 .botao-voltar:hover {
     opacity: 0.7;
+    
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container-principal {
+        flex-direction: column; 
+        gap: 20px; 
+    }
+
+    .secao-video video {
+        border-radius: 8px; 
+    }
+
+    .secao-lateral {
+        gap: 15px;
+    }
+
+    .item-atividade {
+        padding: 14px 16px; 
+        font-size: 15px; }
+
+    .botao-voltar {
+        align-self: center; 
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: #e2e8f0;
+        border-radius: 6px;
+    }
 }
