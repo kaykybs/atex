@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Inteligente Dashboard</title>
+    <link rel="stylesheet" href="../css/pagina_modulos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container-app">
+        <header class="barra-superior">
+            <div class="logo">
+                <h1><strong>Gestão Inteligente</strong></h1>
+            </div>
+            <div class="acoes-cabecalho">
+                <button class="botao-reserva" id="btn-abrir-modal">
+                    <div class="icone-circulo"><i class="fa-solid fa-dollar-sign"></i></div>
+                    Calculadora de Reserva
+                </button>
+            </div>
+        </header>
+
+        <main class="layout-principal">
+            <aside class="barra-lateral">
+                <nav>
+                    <ul>
+                        <li class="ativo">
+                            <i class="fa-solid fa-chalkboard"></i>
+                            <span>Módulos</span>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <section class="area-conteudo">
+                <h2 class="titulo-secao">Curso de finanças</h2>
+                
+                <div class="container-cartoes">
+                    
+                    <a href="../páginas_html/pagina_aulas.html" style="text-decoration: none;"> 
+                        <div class="cartao cartao-verde">
+                            <div class="cabecalho-cartao">
+                                <span class="unidade">UNIDADE 1:</span>
+                                <h3>Diagnóstico Financeiro</h3>
+                            </div>
+                            
+                            <div class="container-progresso">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="porcentagem">0%</span>
+                                <span class="status">Concluido</span>
+                            </div>
+
+                            <div class="pontos-paginacao">
+                                <span class="ponto ativo"></span>
+                                <span class="ponto"></span>
+                                <span class="ponto"></span>
+                            </div>
+                        </div>
+                    </a> 
+
+                    <div class="cartao cartao-petroleo">
+                        <div class="cabecalho-cartao">
+                            <span class="unidade">UNIDADE 2:</span>
+                            <h3>O Orçamento Inteligente</h3>
+                        </div>
+
+                        <div class="icone-cadeado">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <div class="pontos-paginacao">
+                            <span class="ponto"></span>
+                            <span class="ponto ativo"></span>
+                            <span class="ponto"></span>
+                        </div>
+                    </div>
+
+                    <div class="cartao cartao-petroleo">
+                        <div class="cabecalho-cartao">
+                            <span class="unidade">UNIDADE 3:</span>
+                            <h3>Segurança e Futuro</h3>
+                        </div>
+
+                        <div class="icone-cadeado">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <div class="pontos-paginacao">
+                            <span class="ponto"></span>
+                            <span class="ponto"></span>
+                            <span class="ponto ativo"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modal-calculadora">
+        <div class="modal-container">
+            <div class="modal-cabecalho">
+                <h2><i class="fa-solid fa-calculator"></i> Reserva de Emergência</h2>
+                <button class="btn-fechar-modal" id="btn-fechar-modal">&times;</button>
+            </div>
+            
+            <div class="modal-corpo">
+                <p class="modal-descricao">Calcule o valor ideal para a sua segurança financeira com base nos seus gastos fixos e variáveis mensais.</p>
+                
+                <div class="grupo-campo">
+                    <label for="custo-mensal">Custo de Vida Mensal (R$)</label>
+                    <input type="number" id="custo-mensal" placeholder="Ex: 2000" min="0">
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="meses-cobertura">Meses de Cobertura (Tempo de Proteção)</label>
+                    <select id="meses-cobertura">
+                        <option value="3">3 Meses (Autônomo iniciante / CLT Seguro)</option>
+                        <option value="6" selected>6 Meses (Recomendado Padrão)</option>
+                        <option value="12">12 Meses (Profissional Liberal / Conservador)</option>
+                    </select>
+                </div>
+
+                <button class="btn-calcular" id="btn-calcular">Calcular Reserva</button>
+
+                <div class="painel-resultado" id="painel-resultado">
+                    <span class="label-resultado">Sua Reserva Alvo Ideal:</span>
+                    <span class="valor-resultado" id="valor-resultado">R$ 0,00</span>
+                    <p class="dica-resultado" id="dica-resultado"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal-calculadora');
+        const btnAbrir = document.getElementById('btn-abrir-modal');
+        const btnFechar = document.getElementById('btn-fechar-modal');
+        const btnCalcular = document.getElementById('btn-calcular');
+        
+        const inputCusto = document.getElementById('custo-mensal');
+        const selectMeses = document.getElementById('meses-cobertura');
+        const painelResultado = document.getElementById('painel-resultado');
+        const valorResultado = document.getElementById('valor-resultado');
+        const dicaResultado = document.getElementById('dica-resultado');
+
+        // Abrir Modal
+        btnAbrir.addEventListener('click', () => {
+            modal.classList.add('visivel');
+        });
+
+        // Fechar Modal ao clicar no X
+        btnFechar.addEventListener('click', () => {
+            modal.classList.remove('visivel');
+        });
+
+        // Fechar Modal ao clicar fora do container
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('visivel');
+            }
+        });
+
+        // Operação Matemática do Cálculo
+        btnCalcular.addEventListener('click', () => {
+            const custoValue = parseFloat(inputCusto.value);
+            const mesesValue = parseInt(selectMeses.value);
+
+            if (isNaN(custoValue) || custoValue <= 0) {
+                alert('Por favor, insira um valor válido para o custo mensal.');
+                return;
+            }
+
+            const totalReserva = custoValue * mesesValue;
+
+            // Formatação do dinheiro para a moeda local Real BRL
+            valorResultado.textContent = totalReserva.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+
+            // Mensagem explicativa customizada
+            dicaResultado.textContent = `Guardar este montante confere estabilidade para manter suas despesas básicas por ${mesesValue} meses em casos de imprevistos profissionais ou pessoais.`;
+            
+            // Exibe a seção de resultados de forma elegante
+            painelResultado.classList.add('ativo');
+        });
+    </script>
+</body>
+</html>

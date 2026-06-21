@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Curso - Unidade 1</title>
+    <link rel="stylesheet" href="../css/pagina_aulas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container-principal">
+        
+        <div class="secao-video">
+            <video id="video-player" controls>
+                <source src="./gestao-financeira.mp4
+                " type="video/mp4">
+            </video>
+        </div>
+
+        <div class="secao-lateral">
+            <h2 class="titulo-unidade">UNIDADE 1: Diagnóstico Financeiro</h2>
+            
+            <ul class="lista-atividades">
+                <li class="item-atividade ativa" data-video="../conteudos/Finance_Cap1.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 1: Como ter gestão financeira?</span>
+                </li>
+                
+                <li class="item-atividade" data-video="./aula2.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 2: Análise de Fluxo de Caixa</span>
+                </li>
+
+                <li class="item-atividade" data-video="./aula3.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 3: Planejamento e Metas</span>
+                </li>
+
+                <li class="item-atividade" data-video="./aula4.mp4">
+                    <span class="texto-atividade"><i class="fa-solid fa-play icone-play"></i> Aula 4: Indicadores de Sucesso</span>
+                </li>
+                
+                <a href="../conteudos/Apostila_Educacao_Financeira_Premium.pdf" download="Apostila_Educacao_Financeira.pdf" style="text-decoration: none;">
+                    <li class="item-atividade item-download">
+                        <span class="texto-atividade"><i class="fa-solid fa-file-pdf"></i> Apostila: Módulo 1</span>
+                    </li>
+                </a>   
+            </ul>
+
+            <div class="bloco-notas-container">
+                <label class="titulo-bloco">Bloco de Notas (Salva automaticamente)</label>
+                <div class="area-texto-bloco">
+                    <textarea id="bloco-notas" placeholder="Digite suas anotações aqui..."></textarea>
+                    <i class="fa-solid fa-pen icone-editar"></i>
+                </div>
+            </div>
+
+           <a href="../páginas_html/pagina_modulos.html" class="link-voltar"><button class="botao-voltar">Voltar</button></a>
+        </div>
+
+    </div>
+
+    <script>
+        const blocoNotas = document.getElementById('bloco-notas');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const textoSalvo = localStorage.getItem('anotacoes_curso');
+            if (textoSalvo) {
+                blocoNotas.value = textoSalvo;
+            }
+        });
+
+        blocoNotas.addEventListener('input', () => {
+            localStorage.setItem('anotacoes_curso', blocoNotas.value);
+        });
+
+        const itensVideo = document.querySelectorAll('.item-atividade[data-video]');
+        const videoPlayer = document.getElementById('video-player');
+
+        itensVideo.forEach(item => {
+            item.addEventListener('click', () => {
+                itensVideo.forEach(i => i.classList.remove('ativa'));
+                
+                item.classList.add('ativa');
+                
+                const novoVideo = item.getAttribute('data-video');
+                videoPlayer.src = novoVideo;
+                videoPlayer.play();
+            });
+        });
+    </script>
+</body>
+</html>
